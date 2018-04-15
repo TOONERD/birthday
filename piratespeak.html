@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Piratespeak</title>
+    <script src="https://code.jquery.com/jquery-1.10.1.js"></script>
+    <script type="text/javascript">
+        var gateway = gateway || {}; //defind if the variable is not set yet.
+        var gateway = {
+
+            piratespeak: function() {
+
+
+                var $month,
+                    $day,
+                    $year,
+                    $DOBinputs = $("input#birthMonth, input#birthDay, input#birthYear"),
+                    $submit = $("input.submit"),
+                    $gender = $("input#gender"),
+                    $username = $("input#username")
+
+                getDOB = function() {
+                        $month = parseInt($DOBinputs[0].value);
+                        $day = parseInt($DOBinputs[1].value);
+                        $year = parseInt($DOBinputs[2].value);
+
+                        return $month + "/" + $day + "/" + $year;
+                    },
+
+                    getAge = function(dateString) {
+                        var today = new Date(),
+
+                            birthDate = new Date(dateString),
+                            age = today.getFullYear() - birthDate.getFullYear(),
+                            m = month.getMonth() - birthdate.getMonth();
+
+                        // if the birthday hasn't happened yet this year...
+                        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                            // then we can't count the current year in the age.
+                            age--;
+                        }
+                        return age;
+                    },
+
+                    willbe100 = function(hundred) {},
+
+                    willbe100result = function(hundred) {
+                        hundred.preventDefault();
+                        var age = getAge(getDOB());
+                        var remainder = 10 - age;
+                        $("#result p").txt("Hi" + $("#username").txt + "Gender" + $("#gender").value + "you will be 100 in  " + remainder + " years")
+
+                        for (var x = 0; x < 3; x++) {
+                            $DOBinputs[x].value = "";
+                        }
+                    };
+
+                $submit.click(willbe100result);
+            }
+        }
+        $(document).ready(function() {
+            gateway.piratespeak();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="piratespeak">
+        <p>
+            Enter your name
+        </p>
+        <input name="username" type="text" id="username" class="username" />
+        <br>
+        <p>Gender</p>
+        <input name="gender" type="text" id="gender" class="gender" />
+        <p>Please enter your birthday</p>
+        <label for="birthMonth">Month</label>
+        <input name="birthMonth" id="birthMonth" type="text" placeholder="MM" maxlength="2" size="2" class="birthdate" />
+        <label for="birthDay">Day</label>
+        <input name="birthDay" id="birthDay" type="text" placeholder="DD" maxlength="2" size="2" class="birthdate" />
+        <label for="birthYear">Year</label>
+        <input name="birthYear" id="birthYear" type="text" placeholder="YYYY" maxlength="4" size="4" class="birthdate" />
+        <br>
+        <br>
+        <input type="submit" id="ageVerify" value="CALCULATE!" class="submit" />
+        <div class="result">
+            <p></p>
+        </div>
+    </div>
+    <!-- // piratespeak -->
+</body>
+
+</html>
