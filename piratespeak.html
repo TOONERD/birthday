@@ -10,15 +10,15 @@
 
             piratespeak: function() {
 
-
-                var $month,
+			//set up variables
+                var $month, 
                     $day,
                     $year,
                     $DOBinputs = $("input#birthMonth, input#birthDay, input#birthYear"),
                     $submit = $("input.submit"),
                     $gender = $("input#gender"),
-                    $username = $("input#username")
-
+                    $username = $("input#username") 
+			
                 getDOB = function() {
                         $month = parseInt($DOBinputs[0].value);
                         $day = parseInt($DOBinputs[1].value);
@@ -45,10 +45,10 @@
 
                     willbe100result = function(e) {
                         e.preventDefault();
-                        var age = 100 - Number(getAge(getDOB()));
+                        var age = 100 - Number(getAge(getDOB())); // $username will be 100 year in |age|
 										
 			$(".result p").text("Hi this is pirate speak! You will be 100 years old in " + age + "years!");
-                        for (var x = 0; x < 3; x++) {
+                        for (var x = 0; x < 3; x++) { //  reset
                             $DOBinputs[x].value = "";
                         }
                     };
@@ -56,7 +56,7 @@
                 $submit.click(willbe100result);
             }
         }
-        $(document).ready(function() {
+        $(document).ready(function() { //Make sure application load jquery and function 
             gateway.piratespeak();
         });
     
