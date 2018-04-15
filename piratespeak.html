@@ -5,6 +5,8 @@
     <title>Piratespeak</title>
     <script src="https://code.jquery.com/jquery-1.10.1.js"></script>
     <script type="text/javascript">
+    	$(window).load(function(){
+
         var gateway = gateway || {}; //defind if the variable is not set yet.
         var gateway = {
 
@@ -19,7 +21,7 @@
                     $gender = $("input#gender"),
                     $username = $("input#username")
 
-                getDOB = function () {
+                getDOB = function() {
                         $month = parseInt($DOBinputs[0].value);
                         $day = parseInt($DOBinputs[1].value);
                         $year = parseInt($DOBinputs[2].value);
@@ -42,10 +44,10 @@
                         return age;
                     },
 
-                    willbe100 = function(hundred) {},
+                    willbe100 = function(e) {},
 
-                    willbe100result = function(hundred) {
-                        hundred.preventDefault();
+                    willbe100result = function(e) {
+                        e.preventDefault();
                         var age = getAge(getDOB());
                         var remainder = 10 - age;
                         $("#result p").txt("Hi" + $("#username").txt + "Gender" + $("#gender").value + "you will be 100 in  " + remainder + " years")
@@ -61,6 +63,7 @@
         $(document).ready(function() {
             gateway.piratespeak();
         });
+    }
     </script>
 </head>
 
